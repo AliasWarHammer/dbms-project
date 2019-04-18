@@ -79,12 +79,12 @@
                 <div class="row tm-content-row tm-mt-big">
                         <div class="tm-col tm-col-big">
                             <div class="bg-white tm-block h-100">
-                                <h2 class="Select">Enter</h2>
+                                <h2 class="Select">Options</h2>
                                 
-                                        <button class="btn btn-small" onclick="w3.toggleShow('#x1') "> Insert</button>
-                                        <button class="btn btn-small" onclick="w3.toggleShow('#x2') "> Search</button>
-                                        <button class="btn btn-small" onclick="w3.toggleShow('#x3') "> Update</button>
-                                        <button class="btn btn-small" onclick="w3.toggleShow('#x4') "> Delete</button>                                    
+                                        <button class="btn btn-small" onclick="w3.toggleShow('#x1') "> Add </button>
+                                        <button class="btn btn-small" onclick="w3.toggleShow('#x2') "> Search </button>
+                                        <button class="btn btn-small" onclick="w3.toggleShow('#x3') "> Update </button>
+                                        <button class="btn btn-small" onclick="w3.toggleShow('#x4') "> Delete </button>                                    
                                 
                             </div>
                         </div>
@@ -94,10 +94,10 @@
                     <div class="row tm-content-row tm-mt-big">
                         <div class="tm-col tm-col-big">
                             <div class="bg-white tm-block h-100">
-                                <h2 class="tm-block-title">Insert</h2>
+                                <h2 class="tm-block-title">Add Distributor</h2>
                                 <span>Insert into "Distributor"</span>
                                 <div class="form-group">
-                                    <form action="insertDistributor.php" method="POST">
+                                    <form action="php/insertDistributor.php" method="POST">
                                         <label>ID: <input type="text" class="form-control" id="id" name="id"></label><br />
                                         <label>Name: <input type="text" class="form-control" id="name" name="name"></label><br />
                                         <button class="btn btn-small" type="submit">Insert</button>
@@ -113,15 +113,23 @@
                     <div class="tm-col tm-col-big">
                         <div class="bg-white tm-block h-100">
                             <h2 class="tm-block-title">Search</h2>
-                            <span>Search in Distributors</span>
+                            <span>Show all Distributors</span>
                             <div class="form-group">
                                 <form>
                                     <button class="btn btn-small" type="button" onclick="queryDistributor();">Query</button>
                                 </form>
                             </div>
+                            <br />
                             <div id="distributorResult">
 
                             </div>
+                            <span>Search by field</span>
+                            <!-- Rahul -->
+                            <form action="php/customSearchDistributors.php" method="POST">
+                                <label>Search field: <input type="text" class="form-control" id="field" name="field"></label><br />
+                                <label>By: <input type="text" class="form-control" id="by" name="by"></label><br />
+                                <button class="btn btn-small" type="submit">Search</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -131,9 +139,9 @@
                     <div class="tm-col tm-col-big">
                         <div class="bg-white tm-block h-100">
                             <h2 class="tm-block-title">Update</h2>
-                            <span>Update Values</span>
+                            <span>Update Distributor</span>
                             <div class="form-group">
-                                <form action="updateDistributor.php" method="POST">
+                                <form action="php/updateDistributor.php" method="POST">
                                     <label>ID: <input type="text" class="form-control" id="updateID" name="updateID"></label><br />
                                     <label>Name: <input type="text" class="form-control" id="updateName" name="updateName"></label><br />
                                     <button class="btn btn-small" type="submit">Update</button>
@@ -147,9 +155,9 @@
                     <div class="tm-col tm-col-big">
                         <div class="bg-white tm-block h-100">
                             <h2 class="tm-block-title">Delete</h2>
-                            <span>Delete Values</span>
+                            <span>Delete Distributor</span>
                             <div class="form-group">
-                                <form action="deleteDistributor.php" method="POST">
+                                <form action="php/deleteDistributor.php" method="POST">
                                     <label>ID: <input type="text" class="form-control" id="deleteID" name="deleteID"></label><br />
                                     <button class="btn btn-small" type="submit">Delete</button>
                                 </form>
@@ -161,7 +169,8 @@
             <footer class="row tm-mt-small">
                 <div class="col-12 font-weight-light">
                     <p class="d-inline-block tm-bg-black text-white py-2 px-4">
-                        Copyright &copy; Parth Shah 2019
+                        Copyright &copy; Rahul, Saahil, Parth, PES University 2019
+
                     </p>
                 </div>
             </footer>
@@ -194,19 +203,7 @@
                     document.getElementById("distributorResult").innerHTML += element+'<br />';
                 });
             };
-            oReq.open("get", "queryDistributor.php", true);
-            oReq.send();
-        }
-        function top5Products() {
-            var oReq = new XMLHttpRequest();
-            oReq.onload = function () {
-                var objArr = JSON.parse(this.response);
-                console.log(objArr);
-                objArr.forEach(element => {
-                    document.getElementById("top5ProductsResult").innerHTML += element+'<br />';
-                });
-            };
-            oReq.open("get", "top5Products.php", true);
+            oReq.open("get", "php/queryDistributor.php", true);
             oReq.send();
         }
         function toggleShow(){
@@ -224,56 +221,7 @@
                 }
             }
         }
-        }
-            
-       /* function getSelectValue()
-        {
-            var selectedValue = document.getElementById("list").value;
-            var y1 = document.getElementById("x1");
-            var y2 = document.getElementById("x2");
-            var y3 = document.getElementById("x3");
-            var y4 = document.getElementById("x4");
-            if(selectedValue = "Enter new Values"){
-                y1.show('#x1');
-                y2.hide('#x2');
-                y3.hide('#x3');
-                y4.hide('#x4');
-            }
-            if(selectedValue = "Delete"){
-                y1.hide('#x1');
-                y2.show('#x2');
-                y3.hide('#x3');
-                y4.hide('#x4');
-            }
-            if(selectedValue = "Update"){
-                y1.hide('#x1');
-                y2.hide('#x2');
-                y3.show('#x3');
-                y4.hide('#x4');
-            }
-            if(selectedValue = "View details"){
-                y1.hide('#x1');
-                y2.hide('#x2');
-                y3.hide('#x3');
-                y4.show('#x4');
-            }
-        
-        getSelectValue();
-        }*/
-
-
-        function discountsAvailable() {
-            var oReq = new XMLHttpRequest();
-            oReq.onload = function () {
-                var objArr = JSON.parse(this.response);
-                console.log(objArr);
-                objArr.forEach(element => {
-                    document.getElementById("discountsAvailableResult").innerHTML += element+'<br />';
-                });
-            };
-            oReq.open("get", "discountsAvailable.php", true);
-            oReq.send();
-        }
+        }}
     </script>
 </body>
 
