@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
-sah
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
     <!-- https://fonts.google.com/specimen/Open+Sans -->
     <link rel="stylesheet" href="css/fontawesome.min.css">
@@ -79,12 +78,12 @@ sah
                 <div class="row tm-content-row tm-mt-big">
                         <div class="tm-col tm-col-big">
                             <div class="bg-white tm-block h-100">
-                                <h2 class="Select">Enter</h2>
+                                <h2 class="Select">Options</h2>
                                 
-                                        <button class="btn btn-small" onclick="w3.toggleShow('#x1') "> Insert</button>
-                                        <button class="btn btn-small" onclick="w3.toggleShow('#x2') "> Search</button>
-                                        <button class="btn btn-small" onclick="w3.toggleShow('#x3') "> Update</button>
-                                        <button class="btn btn-small" onclick="w3.toggleShow('#x4') "> Delete</button>                                    
+                                        <button class="btn btn-small" onclick="w3.toggleShow('#x1') "> Create Bills</button>
+                                        <button class="btn btn-small" onclick="w3.toggleShow('#x2') "> Search Bills</button>
+                                        <button class="btn btn-small" onclick="w3.toggleShow('#x3') "> Show Bills</button>
+                                        <!-- <button class="btn btn-small" onclick="w3.toggleShow('#x4') "> Delete</button>                                     -->
                                 
                             </div>
                         </div>
@@ -97,9 +96,11 @@ sah
                                 <h2 class="tm-block-title">Insert</h2>
                                 <span>Insert into "Bills"</span>
                                 <div class="form-group">
-                                    <form action="php/insertDistributor.php" method="POST">
+                                    <form action="php/insertBills.php" method="POST">
                                         <label>ID: <input type="text" class="form-control" id="id" name="id"></label><br />
-                                        <label>Name: <input type="text" class="form-control" id="name" name="name"></label><br />
+                                        <label>Discount ID: <input type="text" class="form-control" id="discount" name="discount"></label><br />
+                                        <label>Payment ID: <input type="text" class="form-control" id="payment" name="payment"></label><br />
+                                        <label>Customer ID: <input type="text" class="form-control" id="customer" name="customer"></label><br />
                                         <button class="btn btn-small" type="submit">Insert</button>
                                     </form>
                                 </div>
@@ -113,15 +114,23 @@ sah
                     <div class="tm-col tm-col-big">
                         <div class="bg-white tm-block h-100">
                             <h2 class="tm-block-title">Search</h2>
-                            <span>Search in Bills</span>
+                            <span>Show All Bills</span>
                             <div class="form-group">
                                 <form>
-                                    <button class="btn btn-small" type="button" onclick="queryDistributor();">Query</button>
+                                    <button class="btn btn-small" type="button" onclick="queryBills();">Show</button>
                                 </form>
                             </div>
-                            <div id="distributorResult">
+                            <div id="billsResult">
 
                             </div>
+                            <br />
+                            <span>Search By field</span>
+                            <!-- Rahul -->
+                            <form action="php/customSearchBills.php" method="POST">
+                                <label>Search field: <input type="text" class="form-control" id="field" name="field"></label><br />
+                                <label>By: <input type="text" class="form-control" id="by" name="by"></label><br />
+                                <button class="btn btn-small" type="submit">Search</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -130,20 +139,16 @@ sah
                 <div id=x3>
                     <div class="tm-col tm-col-big">
                         <div class="bg-white tm-block h-100">
-                            <h2 class="tm-block-title">Update</h2>
-                            <span>Update Values</span>
+                            <h2 class="tm-block-title">Show Bills</h2>
+                            <span>All Bills</span>
                             <div class="form-group">
-                                <form action="php/updateDistributor.php" method="POST">
-                                    <label>ID: <input type="text" class="form-control" id="updateID" name="updateID"></label><br />
-                                    <label>Name: <input type="text" class="form-control" id="updateName" name="updateName"></label><br />
-                                    <button class="btn btn-small" type="submit">Update</button>
-                                </form>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div id=x4 >
+                <!-- <div id=x4 >
                     <div class="tm-col tm-col-big">
                         <div class="bg-white tm-block h-100">
                             <h2 class="tm-block-title">Delete</h2>
@@ -156,12 +161,12 @@ sah
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             <footer class="row tm-mt-small">
                 <div class="col-12 font-weight-light">
                     <p class="d-inline-block tm-bg-black text-white py-2 px-4">
-                        Copyright &copy; Parth Shah 2019
+                        Copyright &copy; Rahul, Saahil, Parth, PES University 2019
                     </p>
                 </div>
             </footer>
@@ -185,16 +190,16 @@ sah
         w3.toggleShow('#x2');
         w3.toggleShow('#x3');
         w3.toggleShow('#x4');
-        function queryDistributor() {
+        function queryBills() {
             var oReq = new XMLHttpRequest();
             oReq.onload = function () {
                 var objArr = JSON.parse(this.response);
                 console.log(objArr);
                 objArr.forEach(element => {
-                    document.getElementById("distributorResult").innerHTML += element+'<br />';
+                    document.getElementById("billsResult").innerHTML += element+'<br />';
                 });
             };
-            oReq.open("get", "php/queryDistributor.php", true);
+            oReq.open("get", "php/queryBills.php", true);
             oReq.send();
         }
         function top5Products() {
@@ -225,42 +230,6 @@ sah
             }
         }
         }
-            
-       /* function getSelectValue()
-        {
-            var selectedValue = document.getElementById("list").value;
-            var y1 = document.getElementById("x1");
-            var y2 = document.getElementById("x2");
-            var y3 = document.getElementById("x3");
-            var y4 = document.getElementById("x4");
-            if(selectedValue = "Enter new Values"){
-                y1.show('#x1');
-                y2.hide('#x2');
-                y3.hide('#x3');
-                y4.hide('#x4');
-            }
-            if(selectedValue = "Delete"){
-                y1.hide('#x1');
-                y2.show('#x2');
-                y3.hide('#x3');
-                y4.hide('#x4');
-            }
-            if(selectedValue = "Update"){
-                y1.hide('#x1');
-                y2.hide('#x2');
-                y3.show('#x3');
-                y4.hide('#x4');
-            }
-            if(selectedValue = "View details"){
-                y1.hide('#x1');
-                y2.hide('#x2');
-                y3.hide('#x3');
-                y4.show('#x4');
-            }
-        
-        getSelectValue();
-        }*/
-
 
         function discountsAvailable() {
             var oReq = new XMLHttpRequest();
