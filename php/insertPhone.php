@@ -1,22 +1,22 @@
 <?php
-if(empty($_POST['ProductID'])      ||
-   empty($_POST['brandName'])      ||
-   empty($_POST['productName'])      ||
-   empty($_POST['costPrice'])      ||
-   empty($_POST['sellingPrice'])      ||
-   empty($_POST['RAM'])      ||
-   empty($_POST['storage'])      ||
-   empty($_POST['OS'])      ||
-   empty($_POST['display'])      ||
-   empty($_POST['frontCamera'])      ||
-   empty($_POST['rearCamera'])
-   )
-   {
-      echo "No arguments Provided!";
-      return false;
-   }
+// if(empty($_POST['ProductID'])      ||
+//    empty($_POST['brandName'])      ||
+//    empty($_POST['productName'])      ||
+//    empty($_POST['costPrice'])      ||
+//    empty($_POST['sellingPrice'])      ||
+//    empty($_POST['RAM'])      ||
+//    empty($_POST['storage'])      ||
+//    empty($_POST['OS'])      ||
+//    empty($_POST['display'])      ||
+//    empty($_POST['frontCamera'])      ||
+//    empty($_POST['rearCamera'])
+//    )
+//    {
+//       echo "No arguments Provided!";
+//       return false;
+//    }
 
-$productID = strip_tags(htmlspecialchars($_POST['productID']));
+$productID = strip_tags(htmlspecialchars($_POST['ProductID']));
 $brandName = strip_tags(htmlspecialchars($_POST['brandName']));
 $productName = strip_tags(htmlspecialchars($_POST['productName']));
 $costPrice = strip_tags(htmlspecialchars($_POST['costPrice']));
