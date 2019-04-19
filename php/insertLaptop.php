@@ -1,5 +1,5 @@
 <?php
-if(empty($_POST['productID'])      ||
+if(empty($_POST['ProductID'])      ||
    empty($_POST['brandName'])      ||
    empty($_POST['productName'])      ||
    empty($_POST['costPrice'])      ||
