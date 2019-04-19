@@ -29,8 +29,8 @@ $frontCamera = strip_tags(htmlspecialchars($_POST['frontCamera']));
 $rearCamera = strip_tags(htmlspecialchars($_POST['rearCamera']));
 
 $db_connection = pg_connect("host=localhost dbname=test0 user=postgres password=tt");
-
-$result = pg_query($db_connection, "SELECT BrandId FROM Brands WHERE BrandName = '%s';",$brandName);
+$brandquery = sprintf("SELECT BrandId FROM Brands WHERE BrandName = '%s';",$brandName);
+$result = pg_query($db_connection,$brandquery);
 
 $brandId = 0;
 if (!($row = pg_fetch_row($result))) {
