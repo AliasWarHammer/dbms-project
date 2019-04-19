@@ -41,5 +41,5 @@ $sql = sprintf("INSERT INTO Products (ProductId, CostPrice, SellingPrice, BrandI
 $result2 = pg_query($db_connection, $sql);
 $sql1 = sprintf("INSERT INTO Laptops (ProductId, RAM, Storage, OS, Display, GraphicsCard) VALUES ('%s',%d,%d,'%s','%s',%d);",$productId, $RAM, $storage, $OS, $display, $graphicsCard);
 $result1 = pg_query($db_connection, $sql1);
-echo '<script>window.location.replace("/index.html");</script>';
+echo '<script>window.location.replace("/products.html");</script>';
 ?>

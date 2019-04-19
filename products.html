@@ -79,18 +79,18 @@ sah
                 <div class="row tm-content-row tm-mt-big">
                         <div class="tm-col tm-col-big">
                             <div class="bg-white tm-block h-100">
-                                <h2 class="Select">Enter</h2>
+                                <h2 class="Select">Options</h2>
                                 
-                                        <button class="btn btn-small" onclick="w3.toggleShow('#x1') "> Insert</button>
+                                        <!-- <button class="btn btn-small" onclick="w3.toggleShow('#x1') "> Insert</button> -->
                                         <button class="btn btn-small" onclick="w3.toggleShow('#x2') "> Search</button>
-                                        <button class="btn btn-small" onclick="w3.toggleShow('#x3') "> Update</button>
+                                        <!-- <button class="btn btn-small" onclick="w3.toggleShow('#x3') "> Update</button> -->
                                         <button class="btn btn-small" onclick="w3.toggleShow('#x4') "> Delete</button>                                    
                                 
                             </div>
                         </div>
                 </div>
 
-                <div id=x1 >
+                <!-- <div id=x1 >
                     <div class="row tm-content-row tm-mt-big">
                         <div class="tm-col tm-col-big">
                             <div class="bg-white tm-block h-100">
@@ -106,7 +106,7 @@ sah
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
                 <div id=x2 >
@@ -116,10 +116,10 @@ sah
                             <span>Search in Products</span>
                             <div class="form-group">
                                 <form>
-                                    <button class="btn btn-small" type="button" onclick="queryDistributor();">Query</button>
+                                    <button class="btn btn-small" type="button" onclick="queryProducts();">Search</button>
                                 </form>
                             </div>
-                            <div id="distributorResult">
+                            <div id="productsResult">
 
                             </div>
                         </div>
@@ -127,7 +127,7 @@ sah
                 </div>
 
 
-                <div id=x3>
+                <!-- <div id=x3>
                     <div class="tm-col tm-col-big">
                         <div class="bg-white tm-block h-100">
                             <h2 class="tm-block-title">Update</h2>
@@ -141,7 +141,7 @@ sah
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div id=x4 >
                     <div class="tm-col tm-col-big">
@@ -149,7 +149,7 @@ sah
                             <h2 class="tm-block-title">Delete</h2>
                             <span>Delete Values</span>
                             <div class="form-group">
-                                <form action="deleteDistributor.php" method="POST">
+                                <form action="deleteProducts.php" method="POST">
                                     <label>ID: <input type="text" class="form-control" id="deleteID" name="deleteID"></label><br />
                                     <button class="btn btn-small" type="submit">Delete</button>
                                 </form>
@@ -161,7 +161,7 @@ sah
             <footer class="row tm-mt-small">
                 <div class="col-12 font-weight-light">
                     <p class="d-inline-block tm-bg-black text-white py-2 px-4">
-                        Copyright &copy; Parth Shah 2019
+                        Copyright &copy; Rahul, Saahil, Parth, PES University 2019                        
                     </p>
                 </div>
             </footer>
@@ -185,30 +185,19 @@ sah
         w3.toggleShow('#x2');
         w3.toggleShow('#x3');
         w3.toggleShow('#x4');
-        function queryDistributor() {
+        function queryProducts() {
             var oReq = new XMLHttpRequest();
             oReq.onload = function () {
                 var objArr = JSON.parse(this.response);
                 console.log(objArr);
                 objArr.forEach(element => {
-                    document.getElementById("distributorResult").innerHTML += element+'<br />';
+                    document.getElementById("productsResult").innerHTML += element+'<br />';
                 });
             };
-            oReq.open("get", "queryDistributor.php", true);
+            oReq.open("get", "queryProducts.php", true);
             oReq.send();
         }
-        function top5Products() {
-            var oReq = new XMLHttpRequest();
-            oReq.onload = function () {
-                var objArr = JSON.parse(this.response);
-                console.log(objArr);
-                objArr.forEach(element => {
-                    document.getElementById("top5ProductsResult").innerHTML += element+'<br />';
-                });
-            };
-            oReq.open("get", "top5Products.php", true);
-            oReq.send();
-        }
+        
         function toggleShow(){
             w3.toggleShow = function (sel) 
             {
