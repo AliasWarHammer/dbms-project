@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
-sah
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
     <!-- https://fonts.google.com/specimen/Open+Sans -->
     <link rel="stylesheet" href="css/fontawesome.min.css">
@@ -116,7 +115,18 @@ sah
                             <span>Search in Products</span>
                             <div class="form-group">
                                 <form>
-                                    <button class="btn btn-small" type="button" onclick="queryProducts();">Search</button>
+                                        <form action="php/customSearchProducts.php" method="POST">
+                                            <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7" id="category" name="category">
+                                                <option selected>Select one</option>
+                                                <option value="ProductId">Bill Id</option>
+                                                <option value="CostPrice">Customer Id</option>
+                                                <option value="SellingPrice">SellingPrice</option>
+                                                <option value="BrandId">BrandId</option>
+                                                <option value="ProductName">ProductName</option>
+                                            </select>
+                                            <label>By: <input type="text" class="form-control" id="by" name="by"></label><br />
+                                            <button class="btn btn-small" type="submit" onclick="queryProducts();">Search</button>
+                                        </form>
                                 </form>
                             </div>
                             <div id="productsResult">
@@ -214,7 +224,6 @@ sah
             }
         }
         }
-
         function discountsAvailable() {
             var oReq = new XMLHttpRequest();
             oReq.onload = function () {

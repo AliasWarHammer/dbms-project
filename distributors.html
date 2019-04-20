@@ -125,8 +125,13 @@
                             </div>
                             <span>Search by field</span>
                             <!-- Rahul -->
-                            <form action="php/customSearchDistributors.php" method="POST">
-                                <label>Search field: <input type="text" class="form-control" id="field" name="field"></label><br />
+                            <form action="php/custonSearchDistributors.php" method="POST">
+                                <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7" id="category" name="category">
+                                    <option selected>Select one</option>
+                                    <option value="DistributorID">DistributorID</option>
+                                    <option value="OnBoardingDate">OnBoardingDate</option>
+                                    <option value="DistributorName">DistributorName</option>
+                                </select>
                                 <label>By: <input type="text" class="form-control" id="by" name="by"></label><br />
                                 <button class="btn btn-small" type="submit">Search</button>
                             </form>
