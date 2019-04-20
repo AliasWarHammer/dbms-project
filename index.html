@@ -126,9 +126,9 @@
                             <br />
                             <span>Search By field</span>
                             <!-- Rahul -->
-                            <form action="php/customSearchBills.php" method="POST">
+                            <form action="" method="POST">
                                 <div class="input-group mb-3">
-                                    <label for="category" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Field</label>
+                                    <label for="category" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Field: </label>
                                     <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7" id="category" name="category">
                                         <option selected>Select one</option>
                                         <option value="BillId">Bill Id</option>
@@ -138,7 +138,10 @@
                                     </select>
                                 </div>
                                 <label>Value: <input type="text" class="form-control" id="value" name="value"></label><br />
-                                <button class="btn btn-small" type="submit">Search</button>
+                                <button class="btn btn-small" type="button" onclick="customSearchBills();">Search</button>
+                                <div id="customBillsResult">
+
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -199,6 +202,22 @@
             w3.toggleShow('#x2');
             w3.toggleShow('#x3');
             w3.toggleShow('#x4');
+            function customSearchBills() {
+                var category = document.getElementById("category").value;
+                var value = document.getElementById("value").value;
+                var oReq = new XMLHttpRequest();
+                
+                oReq.onload = function () {
+                    console.log(this.response)
+                    var objArr = JSON.parse(this.response);
+                    console.log(objArr);
+                    objArr.forEach(element => {
+                                   document.getElementById("customBillsResult").innerHTML += element+'<br />';
+                                   });
+                };
+                oReq.open("get", "php/customSearchBills.php?category="+category+"&value="+value, true);
+                oReq.send();
+            }
             function queryBills() {
                 var oReq = new XMLHttpRequest();
                 oReq.onload = function () {
