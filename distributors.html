@@ -132,9 +132,13 @@
                                     <option value="OnBoardingDate">OnBoardingDate</option>
                                     <option value="DistributorName">DistributorName</option>
                                 </select>
-                                <label>By: <input type="text" class="form-control" id="by" name="by"></label><br />
-                                <button class="btn btn-small" type="submit">Search</button>
+                                <label>By: <input type="text" class="form-control" id="value" name="value"></label><br />
+                                <button class="btn btn-small" type="button" onclick="customSearchDistributors();">Search</button>
                             </form>
+                            <br />
+                            <div id="customSearchResult">
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -199,6 +203,22 @@
         w3.toggleShow('#x2');
         w3.toggleShow('#x3');
         w3.toggleShow('#x4');
+        function customSearchDistributors() {
+                var category = document.getElementById("category").value;
+                var value = document.getElementById("value").value;
+                var oReq = new XMLHttpRequest();
+                
+                oReq.onload = function () {
+                    console.log(this.response)
+                    var objArr = JSON.parse(this.response);
+                    console.log(objArr);
+                    objArr.forEach(element => {
+                                   document.getElementById("customSearchResult").innerHTML += element+'<br />';
+                                   });
+                };
+                oReq.open("get", "php/customSearchDistributor.php?category="+category+"&value="+value, true);
+                oReq.send();
+            }
         function queryDistributor() {
             var oReq = new XMLHttpRequest();
             oReq.onload = function () {
