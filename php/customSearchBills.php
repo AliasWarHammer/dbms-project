@@ -15,5 +15,5 @@ $db_connection = pg_connect("host=localhost dbname=test0 user=postgres password=
 
 $sql = sprintf("SELECT * FROM Bills WHERE %s = '%s';",$category, $value);
 $result2 = pg_query($db_connection, $sql);
-echo '<script>window.location.replace("/products.html");</script>';
+echo '<script>window.location.replace("/index.html");</script>';
 ?>
