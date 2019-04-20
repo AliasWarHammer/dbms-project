@@ -87,6 +87,7 @@
                         <a id="downloadAnchorElem1" style="display: none;"></a>
                         <div id="top5ProductsResult">
                         </div>
+
                         <div class="form-group">
                             <form>
                                 <button class="btn btn-small" type="button" onclick="discountsAvailable();">Disounts Available</button>
@@ -95,6 +96,61 @@
                         <a id="downloadAnchorElem2" style="display: none;"></a>
                         <div id="discountsAvailableResult">
                         </div>
+
+                        <div class="form-group">
+                            <form>
+                                <button class="btn btn-small" type="button" onclick="top5HighestRAM();">Top 5 Phones(Highest RAM)</button>
+                            </form>
+                        </div>
+                        <a id="downloadAnchorElem3" style="display: none;"></a>
+                        <div id="top5HighestRAMResult">
+                        </div>
+
+                        <div class="form-group">
+                            <form>
+                                <button class="btn btn-small" type="button" onclick="highestPriceProductBrand();">Highest Priced Product in all Brands</button>
+                            </form>
+                        </div>
+                        <a id="downloadAnchorElem4" style="display: none;"></a>
+                        <div id="highestPriceProductBrandResult">
+                        </div>
+
+                        <div class="form-group">
+                            <form>
+                                <button class="btn btn-small" type="button" onclick="inventoryInCP();">Inventory in Cost Price</button>
+                            </form>
+                        </div>
+                        <a id="downloadAnchorElem5" style="display: none;"></a>
+                        <div id="inventoryInCPResult">
+                        </div>
+
+                        <div class="form-group">
+                            <form>
+                                <button class="btn btn-small" type="button" onclick="highestProfitMargin();">Highest Profit Margin (Brand)</button>
+                            </form>
+                        </div>
+                        <a id="downloadAnchorElem6" style="display: none;"></a>
+                        <div id="highestProfitMarginResult">
+                        </div>
+
+                        <div class="form-group">
+                            <form>
+                                <button class="btn btn-small" type="button" onclick="employeeFirstNameP();">Employees with Name Starting with 'P'</button>
+                            </form>
+                        </div>
+                        <a id="downloadAnchorElem7" style="display: none;"></a>
+                        <div id="employeeFirstNamePResult">
+                        </div>
+
+                        <div class="form-group">
+                            <form>
+                                <button class="btn btn-small" type="button" onclick="brandsSellingBoth();">Brands Selling Both Laptops & Phones</button>
+                            </form>
+                        </div>
+                        <a id="downloadAnchorElem8" style="display: none;"></a>
+                        <div id="brandsSellingBothResult">
+                        </div>
+
                     </div>
                 </div>
 
@@ -158,6 +214,114 @@
                 });
             };
             oReq.open("get", "php/discountsAvailable.php", true);
+            oReq.send();
+        }
+        function top5HighestRAM() {
+            var oReq = new XMLHttpRequest();
+            oReq.onload = function () {
+                var objArr = JSON.parse(this.response);
+                console.log(objArr);
+                var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objArr));
+                var dlAnchorElem = document.getElementById('downloadAnchorElem3');
+                dlAnchorElem.setAttribute("href",     dataStr     );
+                dlAnchorElem.setAttribute("download", "top5HighestRAM.json");
+                dlAnchorElem.click();
+
+                objArr.forEach(element => {
+                    document.getElementById("top5HighestRAMResult").innerHTML += element+'<br />';
+                });
+            };
+            oReq.open("get", "php/top5HighestRAM.php", true);
+            oReq.send();
+        }
+        function highestPriceProductBrand() {
+            var oReq = new XMLHttpRequest();
+            oReq.onload = function () {
+                var objArr = JSON.parse(this.response);
+                console.log(objArr);
+                var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objArr));
+                var dlAnchorElem = document.getElementById('downloadAnchorElem4');
+                dlAnchorElem.setAttribute("href",     dataStr     );
+                dlAnchorElem.setAttribute("download", "highestPriceProductBrand.json");
+                dlAnchorElem.click();
+
+                objArr.forEach(element => {
+                    document.getElementById("highestPriceProductBrandResult").innerHTML += element+'<br />';
+                });
+            };
+            oReq.open("get", "php/highestPriceProductBrand.php", true);
+            oReq.send();
+        }
+        function inventoryInCP() {
+            var oReq = new XMLHttpRequest();
+            oReq.onload = function () {
+                var objArr = JSON.parse(this.response);
+                console.log(objArr);
+                var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objArr));
+                var dlAnchorElem = document.getElementById('downloadAnchorElem5');
+                dlAnchorElem.setAttribute("href",     dataStr     );
+                dlAnchorElem.setAttribute("download", "inventoryInCP.json");
+                dlAnchorElem.click();
+
+                objArr.forEach(element => {
+                    document.getElementById("inventoryInCPResult").innerHTML += element+'<br />';
+                });
+            };
+            oReq.open("get", "php/inventoryInCP.php", true);
+            oReq.send();
+        }
+        function highestProfitMargin() {
+            var oReq = new XMLHttpRequest();
+            oReq.onload = function () {
+                var objArr = JSON.parse(this.response);
+                console.log(objArr);
+                var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objArr));
+                var dlAnchorElem = document.getElementById('downloadAnchorElem6');
+                dlAnchorElem.setAttribute("href",     dataStr     );
+                dlAnchorElem.setAttribute("download", "highestProfitMargin.json");
+                dlAnchorElem.click();
+
+                objArr.forEach(element => {
+                    document.getElementById("highestProfitMarginResult").innerHTML += element+'<br />';
+                });
+            };
+            oReq.open("get", "php/highestProfitMargin.php", true);
+            oReq.send();
+        }
+        function employeeFirstNameP() {
+            var oReq = new XMLHttpRequest();
+            oReq.onload = function () {
+                var objArr = JSON.parse(this.response);
+                console.log(objArr);
+                var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objArr));
+                var dlAnchorElem = document.getElementById('downloadAnchorElem7');
+                dlAnchorElem.setAttribute("href",     dataStr     );
+                dlAnchorElem.setAttribute("download", "employeeFirstNameP.json");
+                dlAnchorElem.click();
+
+                objArr.forEach(element => {
+                    document.getElementById("employeeFirstNamePResult").innerHTML += element+'<br />';
+                });
+            };
+            oReq.open("get", "php/employeeFirstNameP.php", true);
+            oReq.send();
+        }
+        function brandsSellingBoth() {
+            var oReq = new XMLHttpRequest();
+            oReq.onload = function () {
+                var objArr = JSON.parse(this.response);
+                console.log(objArr);
+                var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objArr));
+                var dlAnchorElem = document.getElementById('downloadAnchorElem8');
+                dlAnchorElem.setAttribute("href",     dataStr     );
+                dlAnchorElem.setAttribute("download", "brandsSellingBoth.json");
+                dlAnchorElem.click();
+
+                objArr.forEach(element => {
+                    document.getElementById("brandsSellingBothResult").innerHTML += element+'<br />';
+                });
+            };
+            oReq.open("get", "php/brandsSellingBoth.php", true);
             oReq.send();
         }
         
