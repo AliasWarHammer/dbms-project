@@ -129,16 +129,15 @@
                             <form action="php/customSearchBills.php" method="POST">
                                 <div class="input-group mb-3">
                                     <label for="category" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Field</label>
-                                    <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7" id="category">
+                                    <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7" id="category" name="category">
                                         <option selected>Select one</option>
                                         <option value="BillId">Bill Id</option>
-                                        <option value="BillTime">Bill Time</option>
                                         <option value="CustomerId">Customer Id</option>
                                         <option value="PaymentId">Payment Id</option>
                                         <option value="DiscountId">Discount Id</option>
                                     </select>
                                 </div>
-                                <label>Value: <input type="text" class="form-control" id="by" name="by"></label><br />
+                                <label>Value: <input type="text" class="form-control" id="value" name="value"></label><br />
                                 <button class="btn btn-small" type="submit">Search</button>
                             </form>
                         </div>
