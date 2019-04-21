@@ -21,5 +21,5 @@ $rowObj = array();
         array_push($rowObj, $rowArr);
     }
     echo json_encode($rowObj);
-    // echo '<script>customSearchBills();</script>';
+    echo '<script>window.location.replace("/index.html");</script>';
 ?>
