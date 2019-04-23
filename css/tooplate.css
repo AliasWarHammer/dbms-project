@@ -427,8 +427,15 @@ footer {
   }
 }
 
+@media (max-width: 4500px) {
+  .tm-col-big{
+    width: 80%;
+  }
+}
+
+
 @media (max-width: 1199px) {
-  .tm-col-big,
+  
   .tm-col-small {
     width: 49.65%;
   }
@@ -453,6 +460,8 @@ footer {
     margin-right: 0;
   }
 }
+
+
 
 @media (max-width: 991px) {
   .tm-col-big,
