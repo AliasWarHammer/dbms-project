@@ -197,10 +197,27 @@
                     console.log(this.response)
                     var objArr = JSON.parse(this.response);
                     console.log(objArr);
-                    objArr.forEach(element => {
-                                   document.getElementById("customBillsResult").innerHTML += element+'<br />';
-                                   });
-                };
+                    var x = document.createElement("TABLE");
+                    x.setAttribute("id", "mT1");
+                    x.setAttribute("class", "table table-responsive");
+
+                    document.getElementById("customBillsResult").appendChild(x);
+                    objArr.forEach(element => 
+                    {
+                        var y = document.createElement("TR");
+                        y.setAttribute("id", "r1");
+                        var z;
+                        element.forEach(value => 
+                        {
+                            console.log(value);
+                            z = document.createElement("TD");
+                            var t = document.createTextNode(value);
+                            z.appendChild(t);
+                            y.appendChild(z);
+                        });
+                    document.getElementById("mT1").appendChild(y);
+                });
+            };
                 oReq.open("get", "php/customSearchBills.php?category="+category+"&value="+value, true);
                 oReq.send();
             }
@@ -209,25 +226,30 @@
                 oReq.onload = function () {
                     var objArr = JSON.parse(this.response);
                     console.log(objArr);
-                    objArr.forEach(element => {
-                                   document.getElementById("billsResult").innerHTML += element+'<br />';
-                                   });
-                };
+                    var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTable1");
+                x.setAttribute("class", "table table-responsive");
+
+                document.getElementById("billsResult").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "row");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTable1").appendChild(y);
+                });
+            };
                 oReq.open("get", "php/queryBills.php", true);
                 oReq.send();
             }
-        function top5Products() {
-            var oReq = new XMLHttpRequest();
-            oReq.onload = function () {
-                var objArr = JSON.parse(this.response);
-                console.log(objArr);
-                objArr.forEach(element => {
-                               document.getElementById("top5ProductsResult").innerHTML += element+'<br />';
-                               });
-            };
-            oReq.open("get", "php/top5Products.php", true);
-            oReq.send();
-        }
         function toggleShow(){
             w3.toggleShow = function (sel)
             {
@@ -245,18 +267,6 @@
             }
         }
         
-        function discountsAvailable() {
-            var oReq = new XMLHttpRequest();
-            oReq.onload = function () {
-                var objArr = JSON.parse(this.response);
-                console.log(objArr);
-                objArr.forEach(element => {
-                               document.getElementById("discountsAvailableResult").innerHTML += element+'<br />';
-                               });
-            };
-            oReq.open("get", "php/discountsAvailable.php", true);
-            oReq.send();
-        }
         </script>
     </body>
     

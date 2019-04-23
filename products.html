@@ -200,8 +200,25 @@
             oReq.onload = function () {
                 var objArr = JSON.parse(this.response);
                 console.log(objArr);
-                objArr.forEach(element => {
-                    document.getElementById("productsResult").innerHTML += element+'<br />';
+                var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTable2");
+                x.setAttribute("class", "table2");
+
+                document.getElementById("productsResult").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "row2");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTable2").appendChild(y);
                 });
             };
             oReq.open("get", "queryProducts.php", true);

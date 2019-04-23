@@ -204,33 +204,65 @@
         w3.toggleShow('#x3');
         w3.toggleShow('#x4');
         function customSearchDistributors() {
-                var category = document.getElementById("category").value;
-                var value = document.getElementById("value").value;
+            var category = document.getElementById("category").value;
+            var value = document.getElementById("value").value;
                 var oReq = new XMLHttpRequest();
-                
                 oReq.onload = function () {
-                    console.log(this.response)
                     var objArr = JSON.parse(this.response);
                     console.log(objArr);
-                    objArr.forEach(element => {
-                                   document.getElementById("customSearchResult").innerHTML += element+'<br />';
-                                   });
-                };
+                    var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTable1");
+                x.setAttribute("class", "table table-responsive");
+
+                document.getElementById("customSearchResult").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "row");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTable1").appendChild(y);
+                });
+            };
                 oReq.open("get", "php/customSearchDistributor.php?category="+category+"&value="+value, true);
                 oReq.send();
             }
         function queryDistributor() {
-            var oReq = new XMLHttpRequest();
-            oReq.onload = function () {
-                var objArr = JSON.parse(this.response);
-                console.log(objArr);
-                objArr.forEach(element => {
-                    document.getElementById("distributorResult").innerHTML += element+'<br />';
+                var oReq = new XMLHttpRequest();
+                oReq.onload = function () {
+                    var objArr = JSON.parse(this.response);
+                    console.log(objArr);
+                    var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTable");
+                x.setAttribute("class", "table table-responsive");
+
+                document.getElementById("distributorResult").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "row");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTable").appendChild(y);
                 });
             };
-            oReq.open("get", "php/queryDistributor.php", true);
-            oReq.send();
-        }
+                oReq.open("get", "php/queryDistributor.php", true);
+                oReq.send();
+            }
         function toggleShow(){
             w3.toggleShow = function (sel) 
             {
