@@ -85,7 +85,7 @@
                             </form>
                         </div>
                         <a id="downloadAnchorElem1" style="display: none;"></a>
-                        <div id="top5ProductsResult">
+                        <div id="top5productsResult">
                         </div>
 
                         <div class="form-group">
@@ -190,9 +190,25 @@
                 dlAnchorElem.setAttribute("href",     dataStr     );
                 dlAnchorElem.setAttribute("download", "top5Products.json");
                 dlAnchorElem.click();
+                var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTableA");
+                x.setAttribute("class", "table table-responsive");
 
-                objArr.forEach(element => {
-                    document.getElementById("top5ProductsResult").innerHTML += element+'<br />';
+                document.getElementById("top5productsResult").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "rowA");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTableA").appendChild(y);
                 });
             };
             oReq.open("get", "php/top5Products.php", true);
@@ -208,9 +224,25 @@
                 dlAnchorElem.setAttribute("href",     dataStr     );
                 dlAnchorElem.setAttribute("download", "discountsAvailable.json");
                 dlAnchorElem.click();
+                var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTableB");
+                x.setAttribute("class", "table table-responsive");
 
-                objArr.forEach(element => {
-                    document.getElementById("discountsAvailableResult").innerHTML += element+'<br />';
+                document.getElementById("discountsAvailableResult").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "rowB");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTableB").appendChild(y);
                 });
             };
             oReq.open("get", "php/discountsAvailable.php", true);
@@ -227,8 +259,25 @@
                 dlAnchorElem.setAttribute("download", "top5HighestRAM.json");
                 dlAnchorElem.click();
 
-                objArr.forEach(element => {
-                    document.getElementById("top5HighestRAMResult").innerHTML += element+'<br />';
+                var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTableC");
+                x.setAttribute("class", "table table-responsive");
+
+                document.getElementById("top5HighestRAMResult").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "rowC");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTableC").appendChild(y);
                 });
             };
             oReq.open("get", "php/top5HighestRAM.php", true);
@@ -245,9 +294,28 @@
                 dlAnchorElem.setAttribute("download", "highestPriceProductBrand.json");
                 dlAnchorElem.click();
 
-                objArr.forEach(element => {
-                    document.getElementById("highestPriceProductBrandResult").innerHTML += element+'<br />';
+                
+                var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTableD");
+                x.setAttribute("class", "table table-responsive");
+
+                document.getElementById("highestPriceProductBrandResult").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "rowD");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTableD").appendChild(y);
                 });
+               
             };
             oReq.open("get", "php/highestPriceProductBrand.php", true);
             oReq.send();
@@ -263,9 +331,27 @@
                 dlAnchorElem.setAttribute("download", "inventoryInCP.json");
                 dlAnchorElem.click();
 
-                objArr.forEach(element => {
-                    document.getElementById("inventoryInCPResult").innerHTML += element+'<br />';
+                var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTableE");
+                x.setAttribute("class", "table table-responsive");
+
+                document.getElementById("inventoryInCPResult").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "rowE");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTableE").appendChild(y);
                 });
+               
             };
             oReq.open("get", "php/inventoryInCP.php", true);
             oReq.send();
@@ -281,9 +367,27 @@
                 dlAnchorElem.setAttribute("download", "highestProfitMargin.json");
                 dlAnchorElem.click();
 
-                objArr.forEach(element => {
-                    document.getElementById("highestProfitMarginResult").innerHTML += element+'<br />';
+                var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTableF");
+                x.setAttribute("class", "table table-responsive");
+
+                document.getElementById("highestProfitMarginResult").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "rowF");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTableF").appendChild(y);
                 });
+               
             };
             oReq.open("get", "php/highestProfitMargin.php", true);
             oReq.send();
@@ -299,9 +403,27 @@
                 dlAnchorElem.setAttribute("download", "employeeFirstNameP.json");
                 dlAnchorElem.click();
 
-                objArr.forEach(element => {
-                    document.getElementById("employeeFirstNamePResult").innerHTML += element+'<br />';
+                var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTableG");
+                x.setAttribute("class", "table table-responsive");
+
+                document.getElementById("employeeFirstNamePResult").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "rowG");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTableG").appendChild(y);
                 });
+               
             };
             oReq.open("get", "php/employeeFirstNameP.php", true);
             oReq.send();
@@ -317,9 +439,27 @@
                 dlAnchorElem.setAttribute("download", "brandsSellingBoth.json");
                 dlAnchorElem.click();
 
-                objArr.forEach(element => {
-                    document.getElementById("brandsSellingBothResult").innerHTML += element+'<br />';
+                var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTableH");
+                x.setAttribute("class", "table table-responsive");
+
+                document.getElementById("brandsSellingBothResult").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "rowH");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTableH").appendChild(y);
                 });
+               
             };
             oReq.open("get", "php/brandsSellingBoth.php", true);
             oReq.send();
