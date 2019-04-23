@@ -44,5 +44,5 @@ $result2 = pg_query($db_connection, $sql);
 $sql1 = sprintf("INSERT INTO Phones (ProductId, RAM, Storage, OS, Display, Frontcamera, Rearcamera) VALUES ('%s',%d,%d,'%s','%s',%d,%d);",$pproductID1, $RAM, $storage, $OS, $display, $frontCamera, $rearCamera);
 $result1 = pg_query($db_connection, $sql1);
 
-//echo '<script>window.location.replace("products.html");</script>';
+echo '<script>window.location.replace("/products.html");</script>';
 ?>
