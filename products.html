@@ -88,20 +88,20 @@
                             </div>
                         </div>
                 </div>
-
-                <!-- <div id=x1 >
+<!-- 
+                <div id=x1 >
                     <div class="row tm-content-row tm-mt-big">
                         <div class="tm-col tm-col-big">
                             <div class="bg-white tm-block h-100">
-                                <h2 class="tm-block-title">Insert</h2>
-                                <span>Insert into "Products"</span>
+                                <h2 class="tm-block-title">Search</h2>
+                                <span>Show all "Products"</span>
                                 <div class="form-group">
-                                    <form action="insertDistributor.php" method="POST">
-                                        <label>ID: <input type="text" class="form-control" id="id" name="id"></label><br />
-                                        <label>Name: <input type="text" class="form-control" id="name" name="name"></label><br />
-                                        <button class="btn btn-small" type="submit">Insert</button>
+                                    <form action="" method="POST">
+                                        <button class="btn btn-small" type="button">Search</button>
                                     </form>
                                 </div>
+                                <br />
+                                <div id = "allProductsResult"></div>
                             </div>
                         </div>
                     </div>
@@ -112,20 +112,28 @@
                     <div class="tm-col tm-col-big">
                         <div class="bg-white tm-block h-100">
                             <h2 class="tm-block-title">Search</h2>
+                                <span>Show all "Products"</span>
+                                <div class="form-group">
+                                    <form action="" method="POST">
+                                        <button class="btn btn-small" type="button" onclick="queryProducts();">Search</button>
+                                    </form>
+                                </div>
+                                <br />
+                                <div id = "allProductsResult"></div>
                             <span>Search in Products</span>
                             <div class="form-group">
                                 <form>
-                                        <form action="php/customSearchProducts.php" method="POST">
+                                        <form action="" method="POST">
                                             <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7" id="category" name="category">
                                                 <option selected>Select one</option>
-                                                <option value="ProductId">Bill Id</option>
-                                                <option value="CostPrice">Customer Id</option>
-                                                <option value="SellingPrice">SellingPrice</option>
-                                                <option value="BrandId">BrandId</option>
-                                                <option value="ProductName">ProductName</option>
+                                                <option value="ProductId">Product Id</option>
+                                                <option value="CostPrice">Cost Price</option>
+                                                <option value="SellingPrice">Selling Price</option>
+                                                <option value="BrandId">Brand Id</option>
+                                                <option value="ProductName">Product Name</option>
                                             </select>
-                                            <label>By: <input type="text" class="form-control" id="by" name="by"></label><br />
-                                            <button class="btn btn-small" type="submit" onclick="queryProducts();">Search</button>
+                                            <label>By: <input type="text" class="form-control" id="value" name="value"></label><br />
+                                            <button class="btn btn-small" type="button" onclick="customSearchProducts();">Search</button>
                                         </form>
                                 </form>
                             </div>
@@ -196,13 +204,46 @@
         w3.toggleShow('#x3');
         w3.toggleShow('#x4');
         function queryProducts() {
+
+            var oReq = new XMLHttpRequest();
+            oReq.onload = function () {
+                var objArr = JSON.parse(this.response);
+                console.log(objArr);
+                var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTable1");
+                x.setAttribute("class", "table table-responsive");
+
+                document.getElementById("allProductsResult").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "row2");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTable1").appendChild(y);
+                });
+            };
+            oReq.open("get", "php/queryProducts.php", true);
+            oReq.send();
+        }
+        function customSearchProducts() {
+            var category = document.getElementById("category").value;
+            var value = document.getElementById("value").value;
+
             var oReq = new XMLHttpRequest();
             oReq.onload = function () {
                 var objArr = JSON.parse(this.response);
                 console.log(objArr);
                 var x = document.createElement("TABLE");
                 x.setAttribute("id", "myTable2");
-                x.setAttribute("class", "table2");
+                x.setAttribute("class", "table table-responsive");
 
                 document.getElementById("productsResult").appendChild(x);
                 objArr.forEach(element => 
@@ -221,7 +262,7 @@
                     document.getElementById("myTable2").appendChild(y);
                 });
             };
-            oReq.open("get", "queryProducts.php", true);
+            oReq.open("get", "php/customSearchProducts.php?category="+category+"&value="+value, true);
             oReq.send();
         }
         
