@@ -83,8 +83,11 @@
                                         <!-- <button class="btn btn-small" onclick="w3.toggleShow('#x1') "> Insert</button> -->
                                         <button class="btn btn-small" onclick="w3.toggleShow('#x2') "> Search</button>
                                         <!-- <button class="btn btn-small" onclick="w3.toggleShow('#x3') "> Update</button> -->
-                                        <button class="btn btn-small" onclick="w3.toggleShow('#x4') "> Delete</button>                                    
-                                
+                                        <button class="btn btn-small" onclick="w3.toggleShow('#x4') "> Delete</button>        
+                                        <button class="btn btn-small" onclick="findphones()">All Phones</button>      
+                                        <button class="btn btn-small" onclick="findlaptops()">All Laptops</button>                                  
+                                        <div id="phonelaptop">
+                                        </div>
                             </div>
                         </div>
                 </div>
@@ -167,7 +170,7 @@
                             <h2 class="tm-block-title">Delete</h2>
                             <span>Delete Values</span>
                             <div class="form-group">
-                                <form action="deleteProducts.php" method="POST">
+                                <form action="php/deleteProducts.php" method="POST">
                                     <label>ID: <input type="text" class="form-control" id="deleteID" name="deleteID"></label><br />
                                     <button class="btn btn-small" type="submit">Delete</button>
                                 </form>
@@ -294,6 +297,68 @@
             oReq.open("get", "discountsAvailable.php", true);
             oReq.send();
         }
+        function findphones() {
+
+            var oReq = new XMLHttpRequest();
+            oReq.onload = function () {
+                var objArr = JSON.parse(this.response);
+                console.log(objArr);
+                var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTablea");
+                x.setAttribute("class", "table table-responsive");
+
+                document.getElementById("phonelaptop").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "row2");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTablea").appendChild(y);
+                });
+            };
+            oReq.open("get", "php/findPhones.php", true);
+            oReq.send();
+        }
+
+        function findlaptops() {
+
+            var oReq = new XMLHttpRequest();
+            oReq.onload = function () {
+                var objArr = JSON.parse(this.response);
+                console.log(objArr);
+                var x = document.createElement("TABLE");
+                x.setAttribute("id", "myTableb");
+                x.setAttribute("class", "table table-responsive");
+
+                document.getElementById("phonelaptop").appendChild(x);
+                objArr.forEach(element => 
+                {
+                    var y = document.createElement("TR");
+                    y.setAttribute("id", "row2");
+                    var z;
+                    element.forEach(value => 
+                    {
+                        console.log(value);
+                        z = document.createElement("TD");
+                        var t = document.createTextNode(value);
+                        z.appendChild(t);
+                        y.appendChild(z);
+                    });
+                    document.getElementById("myTableb").appendChild(y);
+                });
+            };
+            oReq.open("get", "php/findLaptops.php", true);
+            oReq.send();
+        }
+
     </script>
 </body>
 
