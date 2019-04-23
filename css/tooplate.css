@@ -73,6 +73,12 @@ a:focus {
   margin-top: 50px;
 }
 
+.tm-col, .tm-col-big{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 .tm-logout-icon {
   font-size: 1.5em;
 }
