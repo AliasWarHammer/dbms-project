@@ -251,12 +251,28 @@
                     var z;
                     element.forEach(value => 
                     {
-                        console.log(value);
+                        // console.log(value);
                         z = document.createElement("TD");
                         var t = document.createTextNode(value);
                         z.appendChild(t);
                         y.appendChild(z);
                     });
+                    var extraBtn = document.createElement("TD");
+                    var btn = document.createElement("BUTTON");
+                    var tNode = document.createTextNode("Delete");
+                    btn.appendChild(tNode);
+                    btn.setAttribute("class", "btn btn-small");
+                    btn.setAttribute("type", "button");
+                    btn.addEventListener("click", function(){
+                        alert("Are you sure you want to delete "+element[0]+"?");
+                        var req = new XMLHttpRequest();
+                        var data = new FormData();
+                        data.append('deleteID',element[0]);
+                        req.open("POST", "php/deleteDistributor.php", true);
+                        req.send(data);
+                    });
+                    extraBtn.appendChild(btn);
+                    y.appendChild(extraBtn);
                     document.getElementById("myTable").appendChild(y);
                 });
             };
