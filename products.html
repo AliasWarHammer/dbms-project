@@ -91,31 +91,13 @@
                             </div>
                         </div>
                 </div>
-<!-- 
-                <div id=x1 >
-                    <div class="row tm-content-row tm-mt-big">
-                        <div class="tm-col tm-col-big">
-                            <div class="bg-white tm-block h-100">
-                                <h2 class="tm-block-title">Search</h2>
-                                <span>Show all "Products"</span>
-                                <div class="form-group">
-                                    <form action="" method="POST">
-                                        <button class="btn btn-small" type="button">Search</button>
-                                    </form>
-                                </div>
-                                <br />
-                                <div id = "allProductsResult"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
 
 
                 <div id=x2 >
                     <div class="tm-col tm-col-big">
                         <div class="bg-white tm-block h-100">
                             <h2 class="tm-block-title">Search</h2>
-                                <span>Show all "Products"</span>
+                                <span>Show all "Products"</span><br />
                                 <div class="form-group">
                                     <form action="" method="POST">
                                         <button class="btn btn-small" type="button" onclick="queryProducts();">Search</button>
@@ -224,12 +206,28 @@
                     var z;
                     element.forEach(value => 
                     {
-                        console.log(value);
+                        // console.log(value);
                         z = document.createElement("TD");
                         var t = document.createTextNode(value);
                         z.appendChild(t);
                         y.appendChild(z);
                     });
+                    var extraBtn = document.createElement("TD");
+                    var btn = document.createElement("BUTTON");
+                    var tNode = document.createTextNode("Delete");
+                    btn.appendChild(tNode);
+                    btn.setAttribute("class", "btn btn-small");
+                    btn.setAttribute("type", "button");
+                    btn.addEventListener("click", function(){
+                        alert("Are you sure you want to delete "+element[0]+"?");
+                        var req = new XMLHttpRequest();
+                        var data = new FormData();
+                        data.append('deleteID',element[0]);
+                        req.open("POST", "php/deleteProducts.php", true);
+                        req.send(data);
+                    });
+                    extraBtn.appendChild(btn);
+                    y.appendChild(extraBtn);
                     document.getElementById("myTable1").appendChild(y);
                 });
             };
