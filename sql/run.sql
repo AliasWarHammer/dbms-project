@@ -26,7 +26,7 @@ CREATE TABLE Brands
     BrandName VARCHAR(20) NOT NULL,
     DistributorId VARCHAR(10),
     PRIMARY KEY(BrandId),
-    FOREIGN KEY(DistributorId) REFERENCES Distributors
+    FOREIGN KEY(DistributorId) REFERENCES Distributors ON DELETE CASCADE
 );
 
 CREATE TABLE Employees
@@ -50,7 +50,7 @@ CREATE TABLE Products
     BrandId VARCHAR(10),
     ProductName VARCHAR(20),
     PRIMARY KEY(ProductId),
-    FOREIGN KEY (BrandId) REFERENCES Brands
+    FOREIGN KEY (BrandId) REFERENCES Brands ON DELETE CASCADE
 );
 
 CREATE TABLE Phones
@@ -62,7 +62,7 @@ CREATE TABLE Phones
     Display VARCHAR(10),
     Frontcamera INT,
     Rearcamera INT,
-    FOREIGN KEY(ProductId) REFERENCES Products
+    FOREIGN KEY(ProductId) REFERENCES Products ON DELETE CASCADE
 );
 
 
@@ -74,7 +74,7 @@ CREATE TABLE Laptops
     OS VARCHAR(20),
     Display VARCHAR(30),
     GraphicsCard INT,
-    FOREIGN KEY(ProductId) REFERENCES Products
+    FOREIGN KEY(ProductId) REFERENCES Products ON DELETE CASCADE
 );
 
 CREATE TABLE Discounts
@@ -111,16 +111,17 @@ CREATE TABLE Bills
     PaymentId VARCHAR(10),
     CustomerId VARCHAR(10),
     PRIMARY KEY(BillId),
-    FOREIGN KEY(DiscountId) REFERENCES Discounts,
-    FOREIGN KEY(PaymentId) REFERENCES Payments,
-    FOREIGN KEY(CustomerId) REFERENCES Customers
+    FOREIGN KEY(DiscountId) REFERENCES Discounts ON DELETE CASCADE,
+    FOREIGN KEY(PaymentId) REFERENCES Payments ON DELETE CASCADE,
+    FOREIGN KEY(CustomerId) REFERENCES Customers ON DELETE CASCADE
 );
 
 CREATE TABLE Has(
     BillId VARCHAR(10),
     ProductId VARCHAR(10),
-    FOREIGN KEY(BillId) REFERENCES Bills,
-    FOREIGN KEY(ProductId) REFERENCES Products
+    FOREIGN KEY(BillId) REFERENCES Bills ON DELETE CASCADE,
+    FOREIGN KEY(ProductId) REFERENCES Products ON DELETE CASCADE
+
 );
 
 
